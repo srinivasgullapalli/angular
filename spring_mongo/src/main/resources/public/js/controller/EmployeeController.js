@@ -13,7 +13,6 @@ angular.module('application', []).controller('EmployeeController', function ($sc
     	$scope.employee = '';
     	for(var i=0; i< $scope.employees.length ;i++)
     		{
-    		 alert("Inside for loop")
     		 if($scope.employees[i].id === id)
     			 {
     			    $scope.employee = $scope.employees[i];
@@ -23,7 +22,6 @@ angular.module('application', []).controller('EmployeeController', function ($sc
     }
    
     this.doDeleteUser = function deleteUser(id) {
-    	alert("Inside delete function"+id);
         return $http({
             method : 'DELETE',
             url : '/employee/'+id 
