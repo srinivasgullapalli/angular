@@ -9,11 +9,11 @@ Pre-requisites and steps to run the application:
 
 5. Install maven 3.3.3 or above.(Make sure maven home is set in enviroment variables.)
 
-6. Clone or download the zip from github and copy to the local system.eg : D:\spring_mongo
+6. Clone or download the zip from github and copy to the local system.eg : D:\todo_angular_boot_mongo
 
-7. Goto that particular directory using command prompt or console.eg : cd D:\spring_mongo
+7. Goto that particular directory using command prompt or console.eg : cd D:\todo_angular_boot_mongo
 
-8. run the command mvn clean install eg : D:\spring_mongo>mvn clean install
+8. run the command mvn clean install eg : D:\todo_angular_boot_mongo>mvn clean install
 
 9. On successfull build execute the command : mvn spring-boot:run
 
