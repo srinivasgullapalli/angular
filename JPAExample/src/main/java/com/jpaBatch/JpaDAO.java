@@ -1,14 +1,15 @@
 package com.jpaBatch;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JpaDAO {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("OrderUnit");
-	private  EntityManager em= emf.createEntityManager();
-	int entityCount = 100000;
-	int batchSize = 100;
+	//private  EntityManager em= emf.createEntityManager();
+	int batchSize = 1000;
 	int i=0;
 /*	public static void main(String[] args) {
 
@@ -21,27 +22,23 @@ public class JpaDAO {
 
 	}*/
 
-	public  void createOrder(int id, String orderingCurrency,
-			String toCurrency, String timeStamp,Integer dealAmount) {
-		em.getTransaction().begin();
-		Order order = new Order(id, orderingCurrency, toCurrency, timeStamp,dealAmount);
-		em.persist(order);
-		 em.flush();
-		//em.getTransaction().commit();
-/*	    for ( int i = 0; i < entityCount; ++i ) {
-	        if ( i > 0 && i % batchSize == 0 ) {
-	            em.flush();
-	            em.clear();
-	 
-	            em.getTransaction().commit();
-	            em.getTransaction().begin();
-	        }
-	 
-	        Order order = new Order(id, orderingCurrency, toCurrency, timeStamp,dealAmount);
-	        em.persist( order);
-	        order=null;
-	    }*/
-	 
-	    em.getTransaction().commit();
-	}
+	public  void createOrder(List<Order> orders) {
+		  EntityManager em= emf.createEntityManager();
+		  em.getTransaction().begin();
+			int i=0;
+			for(Order o:orders)
+			{
+				i++;
+			Order order = (Order)o;
+			em.persist(order);
+			if(i> 0 && i % batchSize ==0) 
+			{
+				 em.flush();em.clear();
+				 em.getTransaction().commit();
+				 em.getTransaction().begin();
+			}
+			}
+			em.getTransaction().commit();
+			em.close();
+		}
 }

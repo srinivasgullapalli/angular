@@ -11,6 +11,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.collections4.ListUtils;
+
 public class Java8CSVReader {
 
 	public static Function<String, Order> mapToOrder = (line) -> {
@@ -19,8 +21,8 @@ public class Java8CSVReader {
 	};
 
 	public static void main(String[] args) {
-		ForkJoinPool customThreadPool = new ForkJoinPool(50);
-		ForkJoinPool customThreadPool2 = new ForkJoinPool(80);
+		ForkJoinPool customThreadPool = new ForkJoinPool(20);
+		ForkJoinPool customThreadPool2 = new ForkJoinPool(10);
 		String fileName = "order.csv";
 		List<Order> orders = null;
 		JpaDAO dao = new JpaDAO();
@@ -36,16 +38,17 @@ public class Java8CSVReader {
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
-        final List<Order> orders2=orders;
-		customThreadPool2.submit(() -> orders2.forEach(order -> {
-			dao.createOrder(order.getId(), order.getOrderingCurrency(), order.getToCurrency(), order.getTimeStamp(),
-					order.getDealAmount());
+        int targetSize = 10000;
+        List<Order> largeList = orders;
+        List<List<Order>> output = ListUtils.partition(largeList, targetSize);
+		customThreadPool2.submit(() -> output.forEach(order -> {
+			dao.createOrder(order);
 		})).invoke();
 
 		java.util.Date date2 = new java.util.Date();
 		Timestamp timestamp2 = new Timestamp(date2.getTime());
 		float seconds = Long.valueOf(timestamp2.getTime() - timestamp1.getTime()).floatValue() / 1000;
-		System.out.println("Time taken to read file having 1,00,000 records  in seconds is  " + seconds);
+		System.out.println("Time taken to read file having" +orders.size()+ " records  in seconds is  " + seconds);
 
 	}
 
