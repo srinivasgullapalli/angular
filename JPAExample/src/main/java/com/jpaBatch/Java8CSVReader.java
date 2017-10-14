@@ -21,22 +21,17 @@ public class Java8CSVReader {
 	};
 
 	public static void main(String[] args) {
-		ForkJoinPool customThreadPool = new ForkJoinPool(20);
+	//	ForkJoinPool customThreadPool = new ForkJoinPool(20);
 		String fileName = "order.csv";
 		List<Order> orders = null;
 		JpaDAO dao = new JpaDAO();
 		java.util.Date date = new java.util.Date();
 		Timestamp timestamp1 = new Timestamp(date.getTime());
 		try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
-			orders = customThreadPool.submit(() -> lines.parallel().map(mapToOrder).collect(Collectors.toList())).get();
+			orders =  lines.parallel().map(mapToOrder).collect(Collectors.toList());
 
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+			e.printStackTrace();}
         int targetSize = 10000;
         List<Order> largeList = orders;
         List<List<Order>> output = ListUtils.partition(largeList, targetSize);
