@@ -22,7 +22,6 @@ public class Java8CSVReader {
 
 	public static void main(String[] args) {
 		ForkJoinPool customThreadPool = new ForkJoinPool(20);
-		ForkJoinPool customThreadPool2 = new ForkJoinPool(10);
 		String fileName = "order.csv";
 		List<Order> orders = null;
 		JpaDAO dao = new JpaDAO();
@@ -41,9 +40,9 @@ public class Java8CSVReader {
         int targetSize = 10000;
         List<Order> largeList = orders;
         List<List<Order>> output = ListUtils.partition(largeList, targetSize);
-		customThreadPool2.submit(() -> output.forEach(order -> {
+        output.stream().parallel().forEach(order -> {
 			dao.createOrder(order);
-		})).invoke();
+		});
 
 		java.util.Date date2 = new java.util.Date();
 		Timestamp timestamp2 = new Timestamp(date2.getTime());

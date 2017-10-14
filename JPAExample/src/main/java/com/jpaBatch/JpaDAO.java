@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 public class JpaDAO {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("OrderUnit");
 	//private  EntityManager em= emf.createEntityManager();
-	int batchSize = 1000;
+	int batchSize = 10000;
 	int i=0;
 /*	public static void main(String[] args) {
 
