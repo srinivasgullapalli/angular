@@ -10,6 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 public class ForkJoinFolderProcessor extends RecursiveTask<List<String>> {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2758002718967152665L;
 	String path;
 	String extension;
 	
@@ -35,16 +39,15 @@ public class ForkJoinFolderProcessor extends RecursiveTask<List<String>> {
 			else
 			{
 				System.out.println("File is : "+file.getAbsolutePath());
+				list.add(file.getAbsolutePath());
 			}
 			
 			if(tasks.size() >= 50)
 				 System.out.println("List of tasks are  : "+tasks.size());
 			
-			
  		}
 		
 		addResultsFromTasks(list, tasks);
-		// TODO Auto-generated method stub
 		return list;
 	}
 	
