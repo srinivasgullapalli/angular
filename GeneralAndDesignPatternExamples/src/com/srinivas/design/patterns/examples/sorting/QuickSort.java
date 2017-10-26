@@ -1,6 +1,5 @@
 package com.srinivas.design.patterns.examples.sorting;
 
-import java.util.List;
 
 public class QuickSort {
 	
