@@ -50,7 +50,7 @@ public class LinkedListOperations {
 		System.out.println("NULL");
 	}
 	
-	public Node reverseLinkedList(Node data)
+	public LinkedListOperations.Node reverseLinkedList(Node data)
 	{
 		Node currentNode=data;
 		Node previousNode=null;
