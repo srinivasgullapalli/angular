@@ -21,7 +21,7 @@ public class RepeatedElementsFinder {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        int arr[]={1,2,3,4,4,5,6,7,2,8};
+        int arr[]={1,8,2,3,4,4,5,6,7,2,8};
           RepeatedElementsFinder finder = new RepeatedElementsFinder();
           finder.repeatFinder(arr);
 	}

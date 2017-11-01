@@ -31,6 +31,8 @@ public class StreamSortExample {
         Collections.sort(employeeList,(Employee e1,Employee e2)-> e1.firstName.compareTo(e2.firstName));
         
         employeeList.forEach(System.out::print);
+        employeeList.sort((Employee e1,Employee e2)-> e1.firstName.compareTo(e2.firstName));
+       // employeeList.sort(employeeList,(Employee e1,Employee e2)-> e1.firstName.compareTo(e2.firstName));
         
 	}
 

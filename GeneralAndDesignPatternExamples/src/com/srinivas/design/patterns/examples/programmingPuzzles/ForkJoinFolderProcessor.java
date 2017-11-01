@@ -68,7 +68,7 @@ public class ForkJoinFolderProcessor extends RecursiveTask<List<String>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
          ForkJoinFolderProcessor processor = new ForkJoinFolderProcessor("D:\\SAMPLES", "*");
-         ForkJoinPool pool = new ForkJoinPool(4);
+         ForkJoinPool pool = new ForkJoinPool(44);
          pool.execute(processor);
          do
          {
