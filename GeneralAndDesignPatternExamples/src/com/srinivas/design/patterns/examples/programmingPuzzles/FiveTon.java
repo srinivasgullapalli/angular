@@ -1,11 +1,12 @@
 package com.srinivas.design.patterns.examples.programmingPuzzles;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class FiveTon {
 	
-	private static List<FiveTon> list = new LinkedList<FiveTon>();
+	private static List<FiveTon> list = Collections.synchronizedList(new LinkedList<FiveTon>());
 	private static int index = 0; 
 	private FiveTon()
 	{
