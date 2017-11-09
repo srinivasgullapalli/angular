@@ -1,4 +1,4 @@
-package com.srinivas.design.patterns.examples.programmingPuzzles;
+package com.srinivas.design.patterns.examples.threading;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class ForkJoinFolderProcessor extends RecursiveTask<List<String>> {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
          ForkJoinFolderProcessor processor = new ForkJoinFolderProcessor("D:\\SAMPLES", "*");
-         ForkJoinPool pool = new ForkJoinPool(44);
+         ForkJoinPool pool = new ForkJoinPool(4);
          pool.execute(processor);
          do
          {

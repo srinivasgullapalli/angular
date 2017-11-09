@@ -1,4 +1,4 @@
-package com.srinivas.design.patterns.examples.programmingPuzzles;
+package com.srinivas.design.patterns.examples.singleTon;
 
 import java.util.Collections;
 import java.util.LinkedList;

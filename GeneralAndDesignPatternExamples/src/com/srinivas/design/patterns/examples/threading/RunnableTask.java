@@ -1,4 +1,4 @@
-package com.srinivas.design.patterns.examples.programmingPuzzles;
+package com.srinivas.design.patterns.examples.threading;
 
 public class RunnableTask implements Runnable {
 
